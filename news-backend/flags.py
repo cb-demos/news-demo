@@ -19,4 +19,4 @@ flags = Flags()
 # Register the flags container with Rollout
 Rox.register("default", flags)
 
-cancel_event = Rox.setup("5eda6292879d8b9326ae1c1d").result();
+cancel_event = Rox.setup("").result();
