@@ -1,0 +1,28 @@
+kind: Pod
+metadata:
+  name: nodejs-app
+spec:
+  containers:
+    - name: nodejs
+      image: node:10.10.0-alpine
+      command:
+        - cat
+      tty: true
+    - name: kaniko
+      image: gcr.io/kaniko-project/executor:debug-v0.10.0
+      imagePullPolicy: Always
+      command:
+        - /busybox/cat
+      tty: true
+      volumeMounts:
+        - name: kaniko-secret
+          mountPath: /secret
+      env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /secret/kaniko-secret.json
+  volumes:
+  - name: kaniko-secret
+    secret:
+      secretName: kaniko-secret
+
+

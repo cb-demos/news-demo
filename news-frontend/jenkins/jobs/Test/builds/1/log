@@ -1,0 +1,8 @@
+Started by user [8mha:////4PW/BKwDS/xlttebKmBlJvHwl2117bHm3svTDo0Gib5oAAAAmR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzuEgZe/dLi1CL99MSy4srSbADOrj1vwgAAAA==[0mGreg Avsyuk
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/Test
+[Test] $ /bin/sh -xe /tmp/jenkins1793906959376269276.sh
++ sh ls
+sh: 0: Can't open ls
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE
