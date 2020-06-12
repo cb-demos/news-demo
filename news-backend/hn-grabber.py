@@ -9,10 +9,10 @@ app = Flask(__name__)
 
 #Mysql connection settings
 mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  passwd="password",
-  database="HN_ONE",
+  host="",
+  user="",
+  passwd="",
+  database="",
 )
 
 #Helper method to populate both HN tables
