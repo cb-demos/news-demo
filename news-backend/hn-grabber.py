@@ -45,7 +45,18 @@ def getHNPosts():
 
         mydb.commit()
 
-        print(mycursor.rowcount, "record inserted.")
+        sql = "INSERT INTO hn_posts_no_score (id, author, title, url, descendants) VALUES (%s, %s, %s, %s, %s)"
+        val = (
+            postData["id"],
+            postData["by"],
+            postData["title"],
+            postData["url"],
+            postData["descendants"],
+        )
+
+        mycursor.execute(sql, val)
+
+        mydb.commit()
 
 
 # Function that grabs posts from DB
