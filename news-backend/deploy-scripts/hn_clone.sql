@@ -1,4 +1,4 @@
-CREATE DATABASE HN_ONE;
+-- CREATE DATABASE HN_ONE;
 
 CREATE TABLE HN_ONE.hn_posts_score
 (
@@ -20,3 +20,5 @@ CREATE TABLE HN_ONE.hn_posts_no_score
   descendants INT unsigned NOT NULL,
   PRIMARY KEY (id) # Make the id the primary key
 );
+
+GRANT ALL PRIVILEGES ON HN_ONE.* TO 'news'@'%';
