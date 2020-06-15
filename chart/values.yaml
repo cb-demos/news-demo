@@ -5,7 +5,7 @@ frontend:
       kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
     hosts:
-      - host: frontend.ld-test.cbws.io
+      - host: REPLACE_WITH_YOUR_HOSTNAME
         paths: 
           - "/"
   image:
@@ -28,9 +28,9 @@ backend:
       kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
     hosts:
-      - host: backend.ld-test.cbws.io
+      - host: REPLACE_WITH_YOUR_HOSTNAME
         paths: 
           - "/"
-  ffKey: 5edaa9db5fe31a4a6df49036
+  ffKey: REPLACE_WITH_YOUR_CB_FF_KEY
   image:
     pullPolicy: Always
