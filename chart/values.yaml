@@ -1,0 +1,36 @@
+frontend:
+  ingress:
+    enabled: true
+    annotations: 
+      kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+    hosts:
+      - host: frontend.ld-test.cbws.io
+        paths: 
+          - "/"
+  image:
+    pullPolicy: Always
+backend:
+  mysql:
+    initializationFiles:
+      hn_clone.sql: |-
+        CREATE TABLE HN_ONE.hn_posts_score (id INT unsigned NOT NULL, author VARCHAR(150) NOT NULL, title VARCHAR (150) NOT NULL, score INT NOT NULL, url VARCHAR (300) NOT NULL, descendants INT unsigned NOT NULL, PRIMARY KEY (id));
+        CREATE TABLE HN_ONE.hn_posts_no_score (id INT unsigned NOT NULL, author VARCHAR(150) NOT NULL, title VARCHAR (150) NOT NULL, url VARCHAR (300) NOT NULL, descendants INT unsigned NOT NULL, PRIMARY KEY (id));
+    persistence:
+      enabled: true
+      size: 1Gi
+    mysqlUser: news
+    mysqlPassword: news
+    mysqlDatabase: HN_ONE
+  ingress:
+    enabled: true
+    annotations: 
+      kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+    hosts:
+      - host: backend.ld-test.cbws.io
+        paths: 
+          - "/"
+  ffKey: 5edaa9db5fe31a4a6df49036
+  image:
+    pullPolicy: Always

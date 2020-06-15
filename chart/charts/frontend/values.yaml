@@ -1,0 +1,105 @@
+# Default values for frontend.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: gcr.io/cb-days-workshop/news-frontend
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths: []
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+
+# mysql
+
+mysql:
+  initializationFiles: |-
+    CREATE TABLE HN_ONE.hn_posts_score
+      (
+        id INT unsigned NOT NULL, # Unique ID for the record
+        author VARCHAR(150) NOT NULL, # Author of the article
+        title VARCHAR (150) NOT NULL, # Title of the article
+        score INT NOT NULL, # Number of votes on the post
+        url VARCHAR (300) NOT NULL, # URL to article
+        descendants INT unsigned NOT NULL,
+        PRIMARY KEY (id) # Make the id the primary key
+      );
+
+      CREATE TABLE HN_ONE.hn_posts_no_score
+      (
+        id INT unsigned NOT NULL, # Unique ID for the record
+        author VARCHAR(150) NOT NULL, # Author of the article
+        title VARCHAR (150) NOT NULL, # Title of the article
+        url VARCHAR (300) NOT NULL, # URL to article
+        descendants INT unsigned NOT NULL,
+        PRIMARY KEY (id) # Make the id the primary key
+      );
+
+      GRANT ALL PRIVILEGES ON HN_ONE.* TO 'news'@'%';
+
+  persistence:
+    enabled: true
+    size: 1Gi
+  mysqlUser: news
+  mysqlPassword: news
+  mysqlDatabase: HN_ONE
