@@ -36,7 +36,7 @@ export default {
   },
   async created () {
     try {
-      let response = await axios.get(``)
+      let response = await axios.get(`http://localhost:5000`)
       response.data.slice(0, 20).map(async post => {
         this.posts.push(post)
       })
