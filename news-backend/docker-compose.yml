@@ -24,7 +24,7 @@ services:
       DB_HOST: database
       DB_USER: news
       DB_PASS: news
-      CB_FF_KEY: asdffsdf
+      CB_FF_KEY: REPLACE_ME_WITH_YOUR_KEY
     links:
     - database
     volumes:
