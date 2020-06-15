@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  database:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./deploy-scripts/:/docker-entrypoint-initdb.d/
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: news
+      MYSQL_DATABASE: "HN_ONE"
+      MYSQL_USER: news
+      MYSQL_PASSWORD: news
+
+  backend:
+    build: .
+    command: ./start.sh
+    restart: always
+    environment:
+      DB_NAME: HN_ONE
+      DB_HOST: database
+      DB_USER: news
+      DB_PASS: news
+      CB_FF_KEY: REPLACE_ME_WITH_YOUR_KEY
+    links:
+    - database
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 5000:5000
+    depends_on:
+      - database
+
+volumes:
+  db_data:
