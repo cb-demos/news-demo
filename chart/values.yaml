@@ -5,7 +5,7 @@ frontend:
       kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
     hosts:
-      - host: REPLACE_WITH_YOUR_HOSTNAME
+      - host: frontend.local
         paths: 
           - "/"
   image:
@@ -28,7 +28,7 @@ backend:
       kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
     hosts:
-      - host: REPLACE_WITH_YOUR_HOSTNAME
+      - host: backend.local
         paths: 
           - "/"
   ffKey: REPLACE_WITH_YOUR_CB_FF_KEY
