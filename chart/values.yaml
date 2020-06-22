@@ -4,10 +4,7 @@ frontend:
     annotations: 
       kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
-    hosts:
-      - host: frontend.local
-        paths: 
-          - "/"
+    host: frontend.local
   image:
     pullPolicy: Always
 backend:
@@ -27,10 +24,7 @@ backend:
     annotations: 
       kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
-    hosts:
-      - host: backend.local
-        paths: 
-          - "/"
+    host: backend.local
   ffKey: REPLACE_WITH_YOUR_CB_FF_KEY
   image:
     pullPolicy: Always
