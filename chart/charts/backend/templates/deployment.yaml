@@ -42,7 +42,7 @@ spec:
           - name: DB_PASS
             value: {{ .Values.mysql.mysqlPassword }}
           - name: CB_FF_KEY
-            value: {{ .Values.ffKey }}
+            value: {{ .Values.ffKey | quote }}
           ports:
             - name: http
               containerPort: 5000
